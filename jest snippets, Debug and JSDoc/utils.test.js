@@ -78,9 +78,40 @@ describe(`slice`, () => {
 
     expect(result).toBe("0123456789");
   });
-  it(`begin too small`, () => {
+
+  it(`begin & end too small`, () => {
     const result = slice("0123456789", -25, -15);
 
     expect(result).toBe("");
+  });
+
+  it(`begin === NaN`, () => {
+    const result = slice("0123456789", NaN);
+
+    expect(result).toBe("0123456789");
+  });
+
+  it(`end === NaN`, () => {
+    const result = slice("0123456789", 2, NaN);
+
+    expect(result).toBe("23456789");
+  });
+
+  it(`begin with decimal part`, () => {
+    const result = slice("0123456789", 2.5, NaN);
+
+    expect(result).toBe("23456789");
+  });
+
+  it(`end with decimal part`, () => {
+    const result = slice("0123456789", 0, 5.5);
+
+    expect(result).toBe("01234");
+  });
+
+  it(`negative decimal indexes`, () => {
+    const result = slice("0123456789", -6.6, -3.3);
+
+    expect(result).toBe("456");
   });
 });

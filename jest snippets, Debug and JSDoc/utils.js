@@ -7,6 +7,17 @@
  */
 function slice(input, begin = 0, end = input.length) {
   let result = "";
+  begin = Math.trunc(begin);
+  end = Math.trunc(end);
+
+  if (isNaN(begin)) {
+    begin = 0;
+  }
+
+  if (isNaN(end)) {
+    end = input.length;
+  }
+
   let startIndex = begin;
   let endIndex = end;
 
