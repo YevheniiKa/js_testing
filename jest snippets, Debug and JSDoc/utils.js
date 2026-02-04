@@ -5,7 +5,7 @@
  * @param {number} end
  * @returns
  */
-function slice(input, begin, end = input.length) {
+function slice(input, begin = 0, end = input.length) {
   let result = "";
 
   for (let i = begin; i < end; i++) {
