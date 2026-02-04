@@ -53,3 +53,12 @@ test("should remove all spaces for duplicate class name", () => {
 
   expect(el.classname).toBe("joke new");
 });
+
+test("should check and remove all duplicates", () => {
+  const el = {
+    classname: "   joke   joke    new  new    ", // 'joke new'
+  };
+  addCssClass(el, "active");
+
+  expect(el.classname).toBe("joke new active");
+});

@@ -1,14 +1,15 @@
 function addCssClass(element, classToAdd) {
-  element.classname = element.classname.trim().replace(/ +/g, " ");
-  if (element.classname.split(" ").includes(classToAdd)) {
-    return;
-  }
+  const classes = new Set(element.classname.split(" "));
 
-  element.classname += ` ${classToAdd}`;
+  classes.delete("");
+
+  classes.add(classToAdd);
+
+  element.classname = [...classes].join(" ");
 }
 
 const el = {
-  classname: "     joke     new   ", // 'joke new'
+  classname: "   joke   joke    new  new    ", // 'joke new'
 };
 
 addCssClass(el, "active");
