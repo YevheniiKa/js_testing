@@ -7,8 +7,22 @@
  */
 function slice(input, begin = 0, end = input.length) {
   let result = "";
+  let startIndex = begin;
+  let endIndex = end;
 
-  for (let i = begin; i < end; i++) {
+  if (begin < 0) {
+    startIndex = Math.max(input.length + begin, 0);
+  }
+
+  if (end < 0) {
+    endIndex = Math.max(input.length + end, 0);
+  }
+
+  if (endIndex > input.length) {
+    endIndex = input.length;
+  }
+
+  for (let i = startIndex; i < endIndex; i++) {
     result += input[i];
   }
 
