@@ -1,6 +1,6 @@
 const { addCssClass, removeCssClass } = require("./utils");
 
-describe.skip("addCssClass", () => {
+describe("addCssClass", () => {
   it("should add class name", () => {
     const el = {
       classname: "joke new",
@@ -57,16 +57,32 @@ describe.skip("addCssClass", () => {
 
   it("should check and remove all duplicates", () => {
     const el = {
-      classname: "   joke   joke    new  new    ", // 'joke new'
+      classname: "   joke   joke    new  new    ",
     };
     addCssClass(el, "active");
 
     expect(el.classname).toBe("joke new active");
   });
+
+  it("should throw an error if params are invalid", () => {
+    const el = {};
+    expect(() => {
+      addCssClass(el, "active");
+    }).toThrow();
+  });
+
+  it("should throw an error if params are invalid", () => {
+    const el = {
+      classnames: 34,
+    };
+    expect(() => {
+      addCssClass(el, "active");
+    }).toThrow();
+  });
 });
 
 describe("removeCssClass", () => {
-  it.skip("should remove class name", () => {
+  it("should remove class name", () => {
     const el = {
       classname: "joke new",
     };
@@ -74,7 +90,7 @@ describe("removeCssClass", () => {
 
     expect(el.classname).toBe("joke");
   });
-  it.only("should remove extras spaces", () => {
+  it("should remove extras spaces", () => {
     const el = {
       classname: "    joke    new   ",
     };
